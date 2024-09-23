@@ -1,17 +1,19 @@
-html {
-  box-sizing: border-box;
-}
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
+html,
+body,
+.root {
+  height: 100%;
 }
 body {
-  margin: 0;
-  padding: 0;
-  font-family: "Roboto", sans-serif;
+  line-height: 1.5;
 }
-list-books-title {
+body,
+.app {
+  background: white;
+}
+
+/* main page */
+
+.list-books-title {
   padding: 10px 0;
   background: #2e7c31;
   text-align: center;
@@ -28,8 +30,7 @@ list-books-title {
 }
 
 .bookshelf {
-  /* padding: 0 10px 20px; */
-  margin-bottom: 20px;
+  padding: 0 10px 20px;
 }
 
 @media (min-width: 600px) {
@@ -120,9 +121,6 @@ list-books-title {
   padding: 10px 15px;
   text-align: left;
 }
-.book-list {
-  padding: 20px; 
-}
 
 .book {
   width: 140px;
@@ -165,12 +163,7 @@ list-books-title {
   opacity: 0;
   cursor: pointer;
 }
-.bookshelf-title {
-  text-align: center; /* Center the titles */
-  font-size: 1.5em; /* Adjust the font size as needed */
-  color: #2e7c31; /* Match your design */
-  margin-bottom: 10px; /* Space below the title */
-}
+
 /* book cover */
 
 .book-cover {

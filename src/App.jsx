@@ -1,27 +1,27 @@
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
-import Home from './components/Home'
-import Search from './components/Search';
-import booksData from './data';
-import { useState } from 'react';
+import BookList from './components/BookList';
+import BookSearch from './components/BookSearch';
+
+import BooksAPI from './utils/BooksAPI';
 
 const App = () => {
-  const [books, setBooks] = useState(booksData);
+  const [books, setBooks] = useState([]);
 
-  const moveBook = (bookId, shelf) => {
-    const updatedBooks = books.map(book =>
-      book.id === bookId ? { ...book, shelf } : book
-    );
-    setBooks(updatedBooks);
-  };
+  useEffect(() => {
+    BooksAPI.getAll().then((books) => {
+      setBooks(books);
+    });
+  }, []);
 
   return (
     <Router>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home moveBook={moveBook} books={books} />} />
-        <Route path="/search" element={<Search moveBook={moveBook} />} />
-      </Routes>
+      <div className="app">
+        <Routes>
+          <Route exact path="/" element={<BookList books={books} setBooks={setBooks} />} />
+          <Route path="/search" element={<BookSearch books={books} setBooks={setBooks} />} />
+        </Routes>
+      </div>
     </Router>
   );
 };
