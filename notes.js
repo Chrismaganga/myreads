@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import Book from './Book';
-import BooksAPI from '../utils/BooksAPI';
+import BooksAPI from '../../utils/BooksAPI';
+import './BookSearch.css'; 
+import Book from '../book/Book';
 
 const BookSearch = ({ books, setBooks }) => {
   const [query, setQuery] = useState('');
@@ -16,13 +17,21 @@ const BookSearch = ({ books, setBooks }) => {
           setSearchResults([]);
         } else {
           setSearchResults(results);
+          // Update the state of books in the main app
+          setBooks((prevBooks) => {
+            const updatedBooks = prevBooks.map((b) => {
+              const match = results.find((result) => result.id === b.id);
+              return match ? { ...b, ...match } : b;
+            });
+            const newBooks = results.filter((result) => !updatedBooks.some((b) => b.id === result.id));
+            return [...updatedBooks, ...newBooks];
+          });
         }
       });
     } else {
       setSearchResults([]);
     }
   };
-
   return (
     <div className="search-books">
       <div className="search-books-bar">
@@ -39,7 +48,7 @@ const BookSearch = ({ books, setBooks }) => {
         <ol className="books-grid">
           {searchResults.map((book) => (
             <li key={book.id}>
-              <Book book={book} onShelfChange={setBooks} />
+              <Book  book={book} onShelfChange={setBooks}/>
             </li>
           ))}
         </ol>
@@ -47,6 +56,4 @@ const BookSearch = ({ books, setBooks }) => {
     </div>
   );
 };
-
 export default BookSearch;
-

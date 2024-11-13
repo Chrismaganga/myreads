@@ -1,0 +1,59 @@
+/* General Container Styling */
+.container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* Title Styling */
+.book-list-title {
+  font-size: 2rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Shelves Container */
+.book-shelves {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 0 10px;
+}
+
+/* Individual Shelf Styling */
+.book-shelf {
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Shelf Titles */
+.book-shelf h2 {
+  font-size: 1.5rem;
+  color: #555;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .book-list-title {
+    font-size: 1.8rem;
+  }
+
+  .book-shelves {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .book-list-title {
+    font-size: 1.5rem;
+  }
+
+  .book-shelf h2 {
+    font-size: 1.3rem;
+  }
+}
